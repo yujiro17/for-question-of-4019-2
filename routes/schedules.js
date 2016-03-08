@@ -49,12 +49,12 @@ router.get('/:scheduleId', authenticationEnsurer, (req, res, next) => {
         where: { scheduleId: schedule.scheduleId },
         order: '"candidateId" ASC'
       }).then((candidates) => {
-         res.render('schedule', {
-              user: req.user,
-              schedule: schedule,
-              candidates: candidates,
-              users: [req.user]
-            });
+        res.render('schedule', {
+          user: req.user,
+          schedule: schedule,
+          candidates: candidates,
+          users: [req.user]
+        });
       });
     } else {
       let err = new Error('指定された予定は見つかりません');

@@ -1,10 +1,10 @@
 'use strict';
-let request = require('supertest');
-let app = require('../app');
-let passportStub = require('passport-stub');
-let User = require('../models/user');
-let Schedule = require('../models/schedule');
-let Candidate = require('../models/candidate');
+const request = require('supertest');
+const app = require('../app');
+const passportStub = require('passport-stub');
+const User = require('../models/user');
+const Schedule = require('../models/schedule');
+const Candidate = require('../models/candidate');
 
 describe('/login', () => {
   before(() => {
@@ -61,7 +61,7 @@ describe('/schedules', () => {
         .expect('Location', /schedules/)
         .expect(302)
         .end((err, res) => {
-          let createdSchedulePath = res.headers.location;
+          const createdSchedulePath = res.headers.location;
           request(app)
             .get(createdSchedulePath)
             .expect(/テスト予定1/)
@@ -73,7 +73,7 @@ describe('/schedules', () => {
             .expect(200)
             .end(() => {
               // テストで作成したデータを削除
-              let scheduleId = createdSchedulePath.split('/schedules/')[1];
+              const scheduleId = createdSchedulePath.split('/schedules/')[1];
               Candidate.findAll({
                 where: { scheduleId: scheduleId }
               }).then((candidates) => {

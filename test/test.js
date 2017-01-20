@@ -78,7 +78,7 @@ describe('/schedules', () => {
   });
 });
 
-descride('/schedules/:scheduleId/users/:userId/candidateId', () => {
+describe('/schedules/:scheduleId/users/:userId/candidates/:candidateId', () => {
   before(() => {
     passportStub.install(app);
     passportStub.login({ id: 0, username: 'testuser' });
@@ -102,7 +102,7 @@ descride('/schedules/:scheduleId/users/:userId/candidateId', () => {
           }).then((candidate) => {
             // 更新がされることをテスト
             request(app)
-              .post(`/schedules/${scheduleId/}users/${0}/candidates/${candidate.candidateId}`)
+              .post(`/schedules/${scheduleId}/users/${0}/candidates/${candidate.candidateId}`)
               .send({ availability: 2 }) // 出席に更新
               .expect('availability:2')
               .end(() => { deleteScheduleAggregate(scheduleId, done); });
@@ -110,6 +110,7 @@ descride('/schedules/:scheduleId/users/:userId/candidateId', () => {
         });
     });
   });
+});
 
 
 function deleteScheduleAggregate(scheduleId, done) {
